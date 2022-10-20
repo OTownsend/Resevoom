@@ -19,7 +19,7 @@ namespace Resevoom.ViewModels
 		}
 
 		private string _username;
-		public string Username
+		public string UserName
 		{
 			get
 			{
@@ -28,7 +28,7 @@ namespace Resevoom.ViewModels
 			set
 			{
 				_username = value;
-				OnPropertyChanged(nameof(Username));
+				OnPropertyChanged(nameof(UserName));
 			}
 		}
 

@@ -14,7 +14,7 @@ namespace Resevoom.ViewModels
         private readonly ObservableCollection<ReservationViewModel> _reservations;
 
         public ICommand MakeReservationCommand { get; }
-
+ 
         public ReservationListingViewModel()
         {
                 _reservations = new ObservableCollection<ReservationViewModel>();
