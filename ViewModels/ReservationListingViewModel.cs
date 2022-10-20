@@ -1,4 +1,5 @@
-﻿using Resevoom.Models;
+﻿using Resevoom.Commands;
+using Resevoom.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,9 +20,11 @@ namespace Resevoom.ViewModels
         {
                 _reservations = new ObservableCollection<ReservationViewModel>();
 
-            _reservations.Add(new ReservationViewModel(new Reservation(new RoomId(1, 2), "MrUser", DateTime.Now, DateTime.Now.AddDays(5))));
-            _reservations.Add(new ReservationViewModel(new Reservation(new RoomId(2, 3), "MrUser1", DateTime.Now, DateTime.Now.AddDays(5))));
-            _reservations.Add(new ReservationViewModel(new Reservation(new RoomId(3, 4), "MrUser2", DateTime.Now, DateTime.Now.AddDays(5))));
+            _reservations.Add(new ReservationViewModel(new Reservation(new RoomID(1, 2), "MrUser", DateTime.Now, DateTime.Now.AddDays(5))));
+            _reservations.Add(new ReservationViewModel(new Reservation(new RoomID(2, 3), "MrUser1", DateTime.Now, DateTime.Now.AddDays(5))));
+            _reservations.Add(new ReservationViewModel(new Reservation(new RoomID(3, 4), "MrUser2", DateTime.Now, DateTime.Now.AddDays(5))));
+
+            MakeReservationCommand = new NavigateCommand();
         }
 
         public IEnumerable<ReservationViewModel> Reservations => _reservations;

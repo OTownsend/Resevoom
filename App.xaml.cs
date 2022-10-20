@@ -15,15 +15,23 @@ namespace Resevoom
     /// </summary>
     public partial class App : Application
     {
+        private readonly Hotel _hotel;
+        public App()
+        {
+            _hotel = new Hotel("TheHotel");
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(_hotel)
 
             };
             MainWindow.Show();  
             base.OnStartup(e);
         }
+        //https://github.com/SingletonSean/reservoom
+        //https://www.youtube.com/watch?v=DNez3wIpHeE&t=3s
+
     }
 }

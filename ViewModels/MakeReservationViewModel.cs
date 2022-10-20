@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Resevoom.Commands;
+using Resevoom.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +15,9 @@ namespace Resevoom.ViewModels
 		public ICommand SubmitCommand { get; }
 		public ICommand CancelCommand { get; }
 
-		public MakeReservationViewModel()
+		public MakeReservationViewModel(Hotel hotel)
 		{
-
+			SubmitCommand = new MakeReservationCommand(this,hotel);
 		}
 
 		private string _username;
@@ -60,7 +62,7 @@ namespace Resevoom.ViewModels
 			}
 		}
 
-		private DateTime _startDate;
+		private DateTime _startDate = DateTime.Now;
 		public DateTime StartDate
 		{
 			get
@@ -74,7 +76,7 @@ namespace Resevoom.ViewModels
 			}
 		}
 
-		private DateTime _endDate;
+		private DateTime _endDate = DateTime.Now;
 		public DateTime EndDate
 		{
 			get
