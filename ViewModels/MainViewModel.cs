@@ -1,4 +1,5 @@
 ﻿using Resevoom.Models;
+using Resevoom.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,18 @@ namespace Resevoom.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public ViewModelBase CurrentViewModel { get; }
-        public MainViewModel(Hotel hotel)
+        private readonly NavigationStore _navigationStore;
+        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
+
+        public MainViewModel(NavigationStore navigationStore)
         {
-            CurrentViewModel = new ReservationListingViewModel();
+            _navigationStore = navigationStore;
+            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
+        private void OnCurrentViewModelChanged()
+        {
+           OnPropertyChanged(nameof(CurrentViewModel)); 
+        }
     }
 }

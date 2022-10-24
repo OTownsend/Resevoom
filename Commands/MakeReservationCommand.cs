@@ -1,4 +1,5 @@
 ﻿using Resevoom.Models;
+using Resevoom.Services;
 using Resevoom.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace Resevoom.Commands
     public class MakeReservationCommand : CommandBase
     {
         private readonly Hotel _hotel;
+        private readonly NavigationService _reservationViewNavigationService;
         private readonly MakeReservationViewModel _makeReservationViewModel;
-        public MakeReservationCommand(MakeReservationViewModel makeReservationViewModel,Hotel hotel)
+        public MakeReservationCommand(MakeReservationViewModel makeReservationViewModel,Hotel hotel, NavigationService reservationViewNavigationService)
         {
             _makeReservationViewModel = makeReservationViewModel;
             _hotel = hotel;
+            _reservationViewNavigationService = reservationViewNavigationService;
             _makeReservationViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
 
@@ -35,6 +38,8 @@ namespace Resevoom.Commands
                 new RoomID(_makeReservationViewModel.RoomNumber,_makeReservationViewModel.FloorNumber),
                 _makeReservationViewModel.UserName,_makeReservationViewModel.StartDate, _makeReservationViewModel.EndDate);
             _hotel.MakeReservation(reservation);
+            _reservationViewNavigationService.Navigate();
+
         }
 
         public override bool CanExecute(object? parameter)
